@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motor Health Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f8f9fa;
+            text-align: center;
+            padding: 40px;
+        }
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            display: inline-block;
+            width: 400px;
+        }
+        h1 {
+            color: #007bff;
+        }
+        .good {
+            color: #28a745;
+            font-weight: bold;
+        }
+        .bad {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        .refresh {
+            margin-top: 20px;
+            background: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .refresh:hover {
+            background: #0056b3;
+        }
+    </style>
+    <!-- optional auto-refresh every 5 seconds -->
+    <!-- <meta http-equiv="refresh" content="5"> -->
+</head>
+<body>
+    <div class="card">
+        <h1>Motor Health Dashboard</h1>
+        <p><strong>Temperature:</strong> {{ data.temperature }} °C</p>
+        <p><strong>Humidity:</strong> {{ data.humidity }} %</p>
+        <p><strong>Current:</strong> {{ data.current }} A</p>
+        <p><strong>Voltage:</strong> {{ data.voltage }} V</p>
+        <p><strong>Vibration:</strong> {{ data.vibration_total }} m/s²</p>
+        <p><strong>RPM:</strong> {{ data.rpm }}</p>
+
+        <h2>Status:
+            {% if data.health_status == 'Normal' %}
+                <span class="good">{{ data.health_status }}</span>
+            {% else %}
+                <span class="bad">{{ data.health_status }}</span>
+            {% endif %}
+        </h2>
+
+        <button class="refresh" onclick="location.reload()">🔄 Refresh</button>
+    </div>
+</body>
+</html>
